@@ -3,30 +3,48 @@ import { ref } from 'vue';
 
 const questions = ref([
   {
-    question: "¿Qué biblioteca de Vue se importa al inicio del script?",
+    question: "¿Cuál es el compañero Digimon de Tai?",
     answers: [
-      { answer: "vue-router", correct: false },
-      { answer: "ref", correct: true },
-      { answer: "vuex", correct: false },
-      { answer: "vue-test-utils", correct: false }
+      { answer: "Gabumon", correct: false },
+      { answer: "Agumon", correct: true },
+      { answer: "Patamon", correct: false },
+      { answer: "Gomamon", correct: false }
     ]
   },
   {
-    question: "¿Qué colores se incluyen en el array `firstQuestion`?",
+    question: "¿Cuál es la evolución mega de Agumon?",
     answers: [
-      { answer: "rojo, azul, amarillo, verde", correct: true },
-      { answer: "rojo, azul, naranja, verde", correct: false },
-      { answer: "rojo, púrpura, amarillo, verde", correct: false },
-      { answer: "rojo, azul, negro, verde", correct: false }
+      { answer: "MetalGreymon", correct: false },
+      { answer: "WarGreymon", correct: true },
+      { answer: "SkullGreymon", correct: false },
+      { answer: "Greymon", correct: false }
     ]
   },
   {
-    question: "¿Cuál es el valor inicial de `boxState`?",
+    question: "¿Cuál es el Digimon con forma de ángel que acompaña a T.K.?",
     answers: [
-      { answer: "true", correct: false },
-      { answer: "false", correct: true },
-      { answer: "undefined", correct: false },
-      { answer: "null", correct: false }
+      { answer: "Angemon", correct: true },
+      { answer: "Devimon", correct: false },
+      { answer: "Angewomon", correct: false },
+      { answer: "Seraphimon", correct: false }
+    ]
+  },
+  {
+    question: "¿Quién es el líder de los Dark Masters?",
+    answers: [
+      { answer: "Piedmon", correct: true },
+      { answer: "Machinedramon", correct: false },
+      { answer: "MetalSeadramon", correct: false },
+      { answer: "Puppetmon", correct: false }
+    ]
+  },
+  {
+    question: "¿Cuál es el Digimon que tiene forma de cactus?",
+    answers: [
+      { answer: "Palmon", correct: false },
+      { answer: "Togemon", correct: true },
+      { answer: "Lillymon", correct: false },
+      { answer: "Tentomon", correct: false }
     ]
   }
 ]);
@@ -34,10 +52,16 @@ const questions = ref([
 const currentQuestionIndex = ref(0);
 const selectedAnswer = ref(null);
 const isCorrect = ref(false);
+const correctAnswersCount = ref(0);
 
 function selectAnswer(answer) {
+  if (selectedAnswer.value) return;
+
   selectedAnswer.value = answer;
   isCorrect.value = answer.correct;
+  if (answer.correct) {
+    correctAnswersCount.value++;
+  }
 }
 
 function nextQuestion() {
@@ -45,6 +69,8 @@ function nextQuestion() {
     currentQuestionIndex.value++;
     selectedAnswer.value = null;
     isCorrect.value = false;
+  } else {
+    currentQuestionIndex.value++;
   }
 }
 </script>
@@ -67,9 +93,11 @@ function nextQuestion() {
         <button @click="nextQuestion" class="bg-green-600 rounded-lg border p-4 text-white font-semibold">Siguiente</button>
       </div>
     </div>
-    <div v-else>
-      <p class="bg-slate-400 flex m-auto w-[800px] h-[500px] justify-center items-center text-white font-bold text-2xl">¡Has completado el cuestionario!</p>
+    <div v-else class="bg-slate-400 flex m-auto w-[800px] h-[500px] justify-center items-center text-white font-bold text-2xl">
+      <div>
+        <p>¡Has completado el cuestionario!</p>
+        <p>Respuestas correctas: {{ correctAnswersCount }}</p>
+      </div>
     </div>
   </div>
 </template>
-
