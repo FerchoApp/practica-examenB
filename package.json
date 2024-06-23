@@ -1,0 +1,23 @@
+{
+  "name": "192099",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/tailwind": "^5.1.0",
+    "@astrojs/vue": "^4.5.0",
+    "@iconify-json/fluent": "^1.1.57",
+    "@iconify-json/ic": "^1.1.17",
+    "@iconify-json/mdi": "^1.1.67",
+    "@iconify-json/ph": "^1.1.13",
+    "astro": "^4.11.0",
+    "tailwindcss": "^3.4.4",
+    "vue": "^3.4.29"
+  }
+}
